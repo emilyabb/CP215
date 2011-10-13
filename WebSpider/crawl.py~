@@ -1,0 +1,13 @@
+import urllib2
+
+def crawl(starting_url):
+    urls = [starting_url]
+
+    while len(urls) > 0:
+        url = urls.pop()
+
+        url_object = urllib2.urlopen(url)
+        url_text = url_object.read()
+        
+        new_urls = extract_links(url_text)
+        urls += new_urls
